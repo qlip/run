@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Templar Crossing | From Peak to Coast</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@300;400;500;700&amp;family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#001e2c",
+                      "primary": "#ffb59a",
+                      "on-primary-fixed": "#380d00",
+                      "on-secondary-fixed": "#001f25",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#ff8251",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#a2d0dd",
+                      "surface-variant": "#323537",
+                      "surface-dim": "#0a0f12",
+                      "on-error": "#690005",
+                      "on-background": "#e1e2e5",
+                      "on-secondary": "#1d343a",
+                      "primary-container": "#6d2200",
+                      "secondary-container": "#244c56",
+                      "on-primary-fixed-variant": "#802a00",
+                      "primary-fixed": "#ffdbcf",
+                      "tertiary": "#81d3ff",
+                      "surface-container-low": "#191c1e",
+                      "secondary": "#a2d0dd",
+                      "inverse-primary": "#a83900",
+                      "surface": "#0a0f12",
+                      "on-tertiary": "#003549",
+                      "surface-container": "#151a1d",
+                      "background": "#0a0f12",
+                      "tertiary-fixed": "#c3e8ff",
+                      "on-primary": "#5b1b00",
+                      "surface-container-lowest": "#06090b",
+                      "tertiary-fixed-dim": "#81d3ff",
+                      "on-tertiary-fixed-variant": "#004c68",
+                      "on-surface": "#e1e2e5",
+                      "inverse-on-surface": "#2e3133",
+                      "inverse-surface": "#e1e2e5",
+                      "outline": "#8c9291",
+                      "outline-variant": "#424848",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#ffb59a",
+                      "on-surface-variant": "#c2c7c7",
+                      "secondary-fixed": "#bbe9f6",
+                      "on-secondary-fixed-variant": "#2b4c55",
+                      "surface-container-highest": "#323537",
+                      "secondary-fixed-dim": "#a2d0dd",
+                      "primary-fixed-dim": "#ffb59a",
+                      "surface-container-high": "#212629",
+                      "surface-bright": "#353a3e",
+                      "tertiary-container": "#004c68",
+                      "on-tertiary-container": "#c3e8ff",
+                      "ocean-deep": "#001e2c",
+                      "ocean-shore": "#244c56"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Product Sans", "Inter", "sans-serif"],
+                      "body": ["Product Sans", "Inter", "sans-serif"],
+                      "label": ["Product Sans", "Inter", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+            vertical-align: middle
+        }
+        .grain-texture {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBQUpoO1w2W7wMRsvp7lA-DdlNiSuMSuRQZ6PRFn4gcsEZ4b76_amKFF1x6Q1txieC0JR4pvZEgp8p0ME4CuD-L8mbF5cNSJJCTFQrbr_PN4ObHg1TAkQvRDYpLDp-TgnQdfBp70ZXrT0mffJ-sT6lu743FwyFGdjCqz4IMaPi0-831Iyj5yYHrHgzQ3QIr5QunngtQdKzOmlCLBvHJ9iZGWmp1inn7rHHO1IyvyYS5VA4ct0bCd3VZcu8rIgG8a_t822kfbZs5wEPN);
+            opacity: 0.05
+        }
+        .topo-texture {
+            background-image: radial-gradient(circle, #424848 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1
+        }
+        .nautical-lines {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(129, 211, 255, 0.03) 40px, rgba(129, 211, 255, 0.03) 41px);
+        }
+        body { font-family: 'Product Sans', 'Inter', sans-serif; }
+
+        /* Modal specific styles */
+        #route-modal.hidden { display: none; }
+        #route-modal { display: flex; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-ocean-deep/80 backdrop-blur-md border-b border-secondary-container/30">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="font-serif text-2xl tracking-tighter text-orange-200">Templar Crossing</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-mono uppercase tracking-widest text-xs text-orange-200 border-b border-orange-200/50 pb-1" href="#route">Choose Path</a>
+<a class="font-mono uppercase tracking-widest text-xs text-stone-400 hover:text-stone-200 transition-colors" href="#safety">Safety</a>
+<a class="font-mono uppercase tracking-widest text-xs text-stone-400 hover:text-stone-200 transition-colors" href="#kit">Equipment</a>
+<a class="font-mono uppercase tracking-widest text-xs text-stone-400 hover:text-stone-200 transition-colors" href="#register">Register</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest border border-outline-variant/30 rounded-md px-3 py-1 bg-surface-container-low">
+<span class="text-primary font-bold">EN</span>
+<span class="text-outline-variant">|</span>
+<a class="text-outline hover:text-on-surface transition-colors" href="https://qlip.github.io/run/">UA</a>
+</div>
+<a class="hidden md:block bg-gradient-to-r from-primary to-primary-container px-6 py-2 rounded-md font-bold text-on-primary-fixed text-sm hover:scale-95 transition-transform" href="#register">Register Now</a>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+<div class="absolute inset-0 z-0">
+<img alt="Pyrenees Ridge" class="w-full h-full object-cover" data-alt="dramatic wide angle shot of jagged pyrenean mountain peaks at dawn with misty valleys and soft orange light hitting granite ridges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAexgzrsBeqvVABmincV7C7FUYHkrP7OFUVpo-xdMLM-x5LQ1R7RxS01472bfo9J3OyIXOH6xQ1rinxvpQGI0GT5_lvscYIHuYdZ0eesyU37t1wLpdaddBxFV1VXGArrtSlYD9jBh5oQX4QD2HyF_tTVQtdFwe10M7w8O-DQ5A1YHiQsO_bxvfYBH4V7cjCeHGj1Zp1ghma2WPIsUg2QgnmqCo6QfAd8nkXrlzENZexpPn7MezxF3aFWKybfd3P_yzBOls1CM2IjH-H"/>
+<div class="absolute inset-0 bg-gradient-to-b from-ocean-deep/60 via-surface/80 to-surface"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-6">
+<div class="mb-4">
+<span class="font-label text-secondary uppercase tracking-[0.3em] text-xs">An Odyssey from Peak to Coast</span>
+</div>
+<h1 class="font-headline italic text-5xl md:text-8xl text-orange-200 leading-tight tracking-tight mb-6">
+                In the Knights' wake. <br/>
+<span class="not-italic">Granite to Salt.</span>
+</h1>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                A series of autonomous mountain runs. Face the rugged Atlantic cliffs of Ocean's Edge.
+            </p>
+<a class="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed px-10 py-5 rounded-md font-bold text-lg hover:scale-95 transition-all shadow-xl" href="#register">
+                Register Now
+                <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+<span class="font-label text-[10px] tracking-widest uppercase">Scroll</span>
+<div class="w-[1px] h-12 bg-primary"></div>
+</div>
+</section>
+<!-- Choose Your Path Section -->
+<section class="py-24 px-6 bg-surface relative" id="route">
+<div class="nautical-lines absolute inset-0 pointer-events-none opacity-20"></div>
+<div class="max-w-screen-2xl mx-auto relative z-10">
+<div class="text-center mb-16">
+<span class="font-label text-secondary uppercase tracking-widest text-sm block mb-4">// Technical Data</span>
+<h2 class="font-headline text-5xl md:text-7xl text-on-surface italic">Selected Route</h2>
+</div>
+<div class="flex justify-center">
+<!-- Option 2: The Ocean’s Edge -->
+<div class="group relative bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/10 hover:border-tertiary/30 transition-all shadow-lg max-w-4xl w-full">
+<div class="p-8 md:p-12">
+<div class="flex justify-between items-start mb-8">
+<div>
+<span class="font-mono text-tertiary text-xs uppercase tracking-widest mb-2 block">Coastal Frontier</span>
+<h3 class="font-headline text-4xl text-on-surface">The Ocean’s Edge</h3>
+<p class="text-[10px] text-outline mt-1 uppercase tracking-wider">Saint-Jean-de-Luz — Pasaia</p>
+</div>
+<div class="bg-tertiary/10 text-tertiary px-4 py-1 rounded-full text-xs font-bold uppercase">Moderate</div>
+</div>
+<div class="space-y-8">
+<div>
+<p class="text-on-surface-variant font-body italic mb-4">"Coastal, salt-sprayed air, and rugged Basque cliffs."</p>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<span class="font-label text-[10px] uppercase text-outline tracking-tighter block mb-1">Atmosphere</span>
+<p class="text-sm font-medium">Salty &amp; Raw</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase text-outline tracking-tighter block mb-1">Technicality</span>
+<p class="text-sm font-medium">Cliffs &amp; Sand</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase text-outline tracking-tighter block mb-1">History</span>
+<p class="text-sm font-medium">Whalers &amp; Mariners</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase text-outline tracking-tighter block mb-1">Water</span>
+<p class="text-sm font-medium">Ample in villages</p>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/10">
+<div class="flex flex-wrap items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">straighten</span>
+<span class="text-2xl font-headline text-tertiary">34.0 km</span>
+<div class="w-px h-6 bg-outline-variant/30"></div>
+<span class="material-symbols-outlined">directions_boat</span>
+<span class="text-2xl font-headline text-tertiary">1 Boat</span>
+</div>
+<div class="ml-auto flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-tertiary text-[10px] font-mono uppercase tracking-widest text-on-tertiary-fixed rounded hover:bg-tertiary-container hover:text-tertiary transition-colors" onclick="openRouteModal('ocean')">
+<span class="material-symbols-outlined text-sm">route</span> Route
+                                        </button>
+<a class="flex items-center gap-2 px-4 py-2 bg-tertiary/10 rounded text-[10px] font-mono uppercase tracking-widest text-tertiary hover:bg-tertiary/20 transition-colors" href="https://maps.app.goo.gl/aV22ixu2ELeRbycJ6" target="_blank">
+<span class="material-symbols-outlined text-sm">map</span> Map
+                                        </a>
+<button class="flex items-center gap-2 px-4 py-2 border border-tertiary/30 rounded text-[10px] font-mono uppercase tracking-widest text-tertiary hover:bg-tertiary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> GPX
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Route Modal -->
+<div class="hidden fixed inset-0 z-[100] items-center justify-center p-4" id="route-modal">
+<div class="absolute inset-0 bg-surface/90 backdrop-blur-md" onclick="closeRouteModal()"></div>
+<div class="relative w-full max-w-5xl bg-surface-container-low border border-outline-variant/20 rounded-xl overflow-hidden shadow-2xl">
+<div class="flex justify-between items-center p-4 border-b border-outline-variant/10">
+<h3 class="font-headline text-xl italic text-primary" id="modal-title">Route Viewer</h3>
+<button class="text-outline hover:text-on-surface transition-colors" onclick="closeRouteModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="w-full bg-surface-container-lowest h-[800px]" id="modal-content">
+<!-- Iframe injected here -->
+</div>
+</div>
+</div>
+<script>
+        const modal = document.getElementById('route-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-title');
+
+        function openRouteModal(type) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            if (type === 'ocean') {
+                modalTitle.innerText = 'The Ocean’s Edge: Route Preview';
+                modalTitle.className = 'font-headline text-xl italic text-tertiary';
+                modalContent.innerHTML = `<iframe src="https://tracedetrail.fr/en/iframe/9911" allowfullscreen style="border: 0;width: 100%; height: 800px;" scrolling="no"></iframe>`;
+            }
+        }
+
+        function closeRouteModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            modalContent.innerHTML = '';
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeRouteModal();
+        });
+    </script>
+<!-- Logistics & Safety -->
+<section class="py-24 px-6 relative overflow-hidden bg-ocean-deep/20" id="safety">
+<div class="topo-texture absolute inset-0 pointer-events-none"></div>
+<div class="max-w-screen-2xl mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Column 1: Mobile Command -->
+<div class="space-y-12">
+<div>
+<h2 class="font-headline text-4xl mb-6 italic">Mobile Command: Equipment Van</h2>
+<p class="text-on-surface-variant leading-relaxed">A specialized logistics unit accompanying the crossing, providing every athlete with necessary gear and support at key passes or along the coastline.</p>
+</div>
+<div class="space-y-8">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+<div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-1">Gear Transport</h4>
+<p class="text-sm text-on-surface-variant">Your change of gear is safely transported from the start in France to the finish line in Spain.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-3xl">medical_services</span>
+<div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-1">First Aid Support</h4>
+<p class="text-sm text-on-surface-variant">Paramedic-level support at key access points along the route.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-3xl">battery_charging_full</span>
+<div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-1">Charging Station</h4>
+<p class="text-sm text-on-surface-variant">High-power powerbank arrays for watches, GPS, and phones.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-3xl">emergency_home</span>
+<div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-1">Emergency Evacuation</h4>
+<p class="text-sm text-on-surface-variant">Rapid response protocols for severe weather or athlete distress.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Safety Protocols -->
+<div class="bg-surface-container-low p-10 rounded-xl border border-outline-variant/10">
+<h2 class="font-headline text-4xl mb-8 italic">Safety Protocols</h2>
+<div class="space-y-12">
+<div class="relative pl-8 border-l-2 border-secondary/30">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary"></div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-2">Live Satellite Monitoring</h4>
+<p class="text-sm text-on-surface-variant">Mandatory GPS beacons connected to our central dashboard. No runner is ever off-grid.</p>
+</div>
+<div class="relative pl-8 border-l-2 border-secondary/30">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary"></div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-2">Mandatory Regrouping Stops</h4>
+<p class="text-sm text-on-surface-variant">Strategically placed checkpoints to verify health vitals and gear integrity before technical sectors.</p>
+</div>
+<div class="relative pl-8 border-l-2 border-secondary/30">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary"></div>
+<h4 class="font-label uppercase tracking-wider text-sm mb-2">Sweeper Unit</h4>
+<p class="text-sm text-on-surface-variant">Experienced mountain and coastal guides trailing the final group, ensuring total course clearance.</p>
+</div>
+</div>
+<div class="mt-12 p-6 bg-secondary-container/20 rounded-lg">
+<p class="font-label text-xs text-secondary italic tracking-tighter">"Preparation is the difference between a pilgrimage and a tragedy. We take no risks on the crossing."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mandatory Kit List -->
+<section class="py-24 px-6 bg-surface-container-lowest" id="kit">
+<div class="max-w-screen-2xl mx-auto">
+<div class="text-center mb-16">
+<span class="font-label text-primary uppercase tracking-widest text-sm block mb-4">Required Archives</span>
+<h2 class="font-headline text-5xl md:text-6xl italic">Mandatory Equipment</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Kit Item -->
+<div class="group bg-surface-container p-8 rounded-lg hover:bg-surface-bright transition-all">
+<div class="w-12 h-12 mb-6 text-primary flex items-center justify-center bg-primary-container/20 rounded-md">
+<span class="material-symbols-outlined text-2xl">map</span>
+</div>
+<h4 class="font-label uppercase text-sm mb-2 tracking-widest">Digital Navigation</h4>
+<p class="text-sm text-on-surface-variant mb-4">GPX file pre-loaded on watch or dedicated GPS device.</p>
+<span class="text-[10px] font-mono text-outline uppercase tracking-tight">Requirement: Offline access</span>
+</div>
+<div class="group bg-surface-container p-8 rounded-lg hover:bg-surface-bright transition-all">
+<div class="w-12 h-12 mb-6 text-primary flex items-center justify-center bg-primary-container/20 rounded-md">
+<span class="material-symbols-outlined text-2xl">water_drop</span>
+</div>
+<h4 class="font-label uppercase text-sm mb-2 tracking-widest">Hydration</h4>
+<p class="text-sm text-on-surface-variant mb-4">Minimum 1.5L capacity. Electrolyte tablets recommended.</p>
+<span class="text-[10px] font-mono text-outline uppercase tracking-tight">Requirement: 1.5L fluid</span>
+</div>
+<div class="group bg-surface-container p-8 rounded-lg hover:bg-surface-bright transition-all">
+<div class="w-12 h-12 mb-6 text-primary flex items-center justify-center bg-primary-container/20 rounded-md">
+<span class="material-symbols-outlined text-2xl">air</span>
+</div>
+<h4 class="font-label uppercase text-sm mb-2 tracking-widest">Apparel</h4>
+<p class="text-sm text-on-surface-variant mb-4">Lightweight windproof jacket with taped seams for ridge weather.</p>
+<span class="text-[10px] font-mono text-outline uppercase tracking-tight">Requirement: Weather-resistant</span>
+</div>
+<div class="group bg-surface-container p-8 rounded-lg hover:bg-surface-bright transition-all">
+<div class="w-12 h-12 mb-6 text-primary flex items-center justify-center bg-primary-container/20 rounded-md">
+<span class="material-symbols-outlined text-2xl">restore_from_trash</span>
+</div>
+<h4 class="font-label uppercase text-sm mb-2 tracking-widest">Waste Bag</h4>
+<p class="text-sm text-on-surface-variant mb-4">Reusable litter pouch. We follow Leave No Trace principles.</p>
+<span class="text-[10px] font-mono text-outline uppercase tracking-tight">Requirement: Eco-friendly</span>
+</div>
+</div>
+</div>
+</section>
+<!-- The Reward -->
+<section class="py-24 px-6 bg-surface">
+<div class="max-w-screen-2xl mx-auto">
+<h2 class="font-headline text-5xl italic text-center mb-16">Participant Rewards</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-6 text-center">
+<div class="aspect-square bg-surface-container-high rounded-full overflow-hidden border-4 border-outline-variant/20 flex items-center justify-center">
+<img alt="Technical T-shirt" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" data-alt="high performance black technical running t-shirt with orange templar crossing logo on a clean mountain background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzvfs-RTGWq1DOG6N5UiYcjOa12JcrLcgcIDyw7OwZhXsLX1d7JQHKP-iyU-HVUW9CYCgIKsdKAa-AOqqHXPorrYLGTtwSNrOMY1y_mWW7HQRdttrHTb_ReAzBbUg-3s4v7GfU3K3oCrSWvlWptrzNViOC87DZT5a9DPIp3HFipQ3Uj2SUkDP3GBdEUdgoIMvsRv9JBN70Da5SlatCUHERbdZHoDot6lnp_itRxyE-71WKA0aEm_T-j4Xifgsv48J8o_azmPykCSf7"/>
+</div>
+<h4 class="font-headline text-2xl">Technical T-shirt</h4>
+<p class="text-sm text-on-surface-variant px-6">Moisture-wicking fabric with 2024 branding and ridge coordinates.</p>
+</div>
+<div class="space-y-6 text-center">
+<div class="aspect-square bg-surface-container-high rounded-full overflow-hidden border-4 border-primary/40 flex items-center justify-center">
+<img alt="Finisher Medal" class="w-full h-full object-cover opacity-90" data-alt="heavy antique brass finisher medal with intricate templar cross and mountain engravings laying on a weathered stone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6k-jBHfMMsqj1uWab0vBUFNwDaZ70Eq38xoKxW3JoYDuQSVD3jV5vLfNTdvwRfNSxAwwxbvF-AG-vlBF1v5bEqtgpIk8UbGbTpFWkUeqwZ69BoL0yZcpn0BfSCC-EZUPK1f-d5XkreOX9dlHer7x7FgAPVM1nxJrdhJSjHF-xs7SzXBGRUYqRloVNGL7-ta3Cj1U9PQehuH-pGwjsDR7vTji3JHh7hevF0FPFFh-vzLWmWgtHMskBY-MRPF6yLiv6wVIPgz5b5Sru"/>
+</div>
+<h4 class="font-headline text-2xl text-primary">Crossing Medal</h4>
+<p class="text-sm text-on-surface-variant px-6">Forged brass, a weighty reward for endurance. A relic of your journey.</p>
+</div>
+<div class="space-y-6 text-center">
+<div class="aspect-square bg-surface-container-high rounded-full overflow-hidden border-4 border-outline-variant/20 flex items-center justify-center">
+<img alt="Tapas" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" data-alt="traditional spanish tapas with chorizo cheese and olives on a wooden board with warm evening lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9L2VjQ9eI63etERbKb4ij5C9jQP7q0Cdn_j8i3RWgdIhJvicyuve20od0K9KK1MDwNFOzvR1QD1m-dS0OhqfN0XUP5iGvrFBIq557fXR0nHJQH-jP22gokoosiG5-idtPL9r-hLfnMcNO884uZCUcHSC3TFa8Vqcn1z0ao_MNW0EKF7yJLKi781BKJJax5SifbxHBTH2ieaqaYbIKPE9wDqaFqPCPeWu5gQihaSnOo0r_GHS5Nq4wnnMNh7DF9rWqTD-K73D8mOHz"/>
+</div>
+<h4 class="font-headline text-2xl">Regional Tapas</h4>
+<p class="text-sm text-on-surface-variant px-6">A celebratory meal. Pyrenean cheese or pinchos from San Sebastián.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Registration Form -->
+<section class="py-24 px-6 bg-surface-container-lowest" id="register">
+<div class="max-w-4xl mx-auto bg-surface-container-low p-10 md:p-16 rounded-xl relative border border-secondary-container/20">
+<div class="grain-texture absolute inset-0 pointer-events-none rounded-xl"></div>
+<div class="relative z-10 text-center">
+<h2 class="font-headline text-4xl md:text-5xl italic mb-4">Join the Pack</h2>
+<p class="text-on-surface-variant mb-12 font-body">Limited to 50 runners. Secure your place in the archives.</p>
+<div class="w-full flex justify-center overflow-hidden rounded-lg bg-white/5">
+<iframe frameborder="0" height="1812" marginheight="0" marginwidth="0" src="https://docs.google.com/forms/d/e/1FAIpQLScdJwYv--gGUALPY-18m35fo56u6jUQhdSInwqe1TgshsNAJQ/viewform?embedded=true" width="100%">Loading…</iframe>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-secondary-container/30 bg-ocean-deep">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-8 max-w-screen-2xl mx-auto">
+<div class="font-serif text-lg text-orange-200">Templar Crossing</div>
+<div class="flex gap-8">
+<a class="font-mono text-[10px] tracking-tight uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">Contact</a>
+<a class="font-mono text-[10px] tracking-tight uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">Volunteer</a>
+<a class="font-mono text-[10px] tracking-tight uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">Privacy</a>
+<a class="font-mono text-[10px] tracking-tight uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">Media</a>
+</div>
+<div class="font-mono text-[10px] tracking-tight uppercase text-stone-500">
+            © 2024 Alpine Archivist - Templar Crossing. All rights reserved.
+        </div>
+</div>
+</footer>
+</body></html>
